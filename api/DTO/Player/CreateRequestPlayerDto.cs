@@ -15,6 +15,8 @@ namespace api.DTO.Player
         public string Surname { get; set; } = string.Empty;
         
         [Required]
+        [MinLength(5, ErrorMessage = "At least 5 char")]
+        [MaxLength(15, ErrorMessage = "Max 15 char")]
         public string Username { get; set; } = string.Empty;
         
         [Required]

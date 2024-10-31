@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Database;
 using api.DTO.Player;
+using api.Helpers;
 using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
@@ -24,18 +25,26 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] QueryObject query) //filtering e.g. by name..username..
         {
-            var player = await _playerRepo.GetAllAsync();
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var player = await _playerRepo.GetAllAsync(query);
 
             var playerDto = player.Select(x => x.ToPlayerDto());
 
             return Ok(player);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")] //Contrains for Route
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var player = await _playerRepo.GetIdByAsync(id);
             
             if(player == null)
@@ -49,15 +58,25 @@ namespace api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateRequestPlayerDto playerDto)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var playerModel = playerDto.FromDtoToPlayer();
             await _playerRepo.CreateAsync(playerModel);
             return CreatedAtAction(nameof(GetById), new { id = playerModel.Id}, playerModel.ToPlayerDto());
         }
 
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdatePlayerRequestDto updateDto)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var playerModel = await _playerRepo.UpdateAsync(id, updateDto);
             
             if (playerModel == null)
@@ -69,9 +88,14 @@ namespace api.Controllers
         }
 
         [HttpDelete]
-        [Route("({id})")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Delete ([FromRoute] int id)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var playerModel = await _playerRepo.DeleteAsync(id);
             
             if(playerModel == null)

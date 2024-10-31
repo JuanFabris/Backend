@@ -24,6 +24,12 @@ namespace api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll ()
         {
+            //API for Validation default
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var skill = await _skillRepo.GetAllAsync();
 
             var skillDto = skill.Select(s => s.ToSkillDto());
@@ -31,9 +37,13 @@ namespace api.Controllers
             return Ok (skill);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById ([FromRoute] int id)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var skill = await _skillRepo.GetByIdAsync(id);
             if(skill == null)
             {
@@ -43,9 +53,13 @@ namespace api.Controllers
             return Ok (skill.ToSkillDto());
         }
 
-        [HttpPost("{playerId}")]
+        [HttpPost("{playerId:int}")]
         public async Task<IActionResult> Create ([FromRoute] int playerId, CreateRequestSkill skillDto)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             if(!await _playerRepo.PlayerExists(playerId))
             {
                 return BadRequest("I did not find any player with that ID sir");
@@ -57,9 +71,13 @@ namespace api.Controllers
         }
 
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update ([FromRoute] int id, [FromBody] UpdateSkill updateSkill)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var skill = await _skillRepo.UpdateAsync(id, updateSkill.ToUpdateSkill());
             if(skill == null)
             {
@@ -70,9 +88,13 @@ namespace api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Delete ([FromRoute] int id)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var skill = await _skillRepo.DeleteAsync(id);
             if(skill == null)
             {

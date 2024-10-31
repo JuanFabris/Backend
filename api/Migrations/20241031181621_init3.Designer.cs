@@ -12,8 +12,8 @@ using api.Database;
 namespace api.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20241031145227_init2")]
-    partial class init2
+    [Migration("20241031181621_init3")]
+    partial class init3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,7 +59,7 @@ namespace api.Migrations
                     b.ToTable("Players");
                 });
 
-            modelBuilder.Entity("api.Models.PlayerSkill", b =>
+            modelBuilder.Entity("api.Models.Skill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -92,7 +92,7 @@ namespace api.Migrations
                     b.ToTable("Skills");
                 });
 
-            modelBuilder.Entity("api.Models.PlayerSkill", b =>
+            modelBuilder.Entity("api.Models.Skill", b =>
                 {
                     b.HasOne("api.Models.Player", "Player")
                         .WithMany("Skills")

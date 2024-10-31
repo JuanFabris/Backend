@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Database;
 using api.DTO.Player;
+using api.Helpers;
 using api.Interfaces;
 using api.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -26,9 +27,43 @@ namespace api.Repository
             return playerModel;
         }
 
-        public async Task<List<Player>> GetAllAsync()
+        public async Task<List<Player>> GetAllAsync(QueryObject query)
         {
-            return await _context.Players.Include(s => s.Skills).ToListAsync(); //List Player
+            var players = _context.Players.Include(s => s.Skills).AsQueryable();
+
+            //Filter
+            if(!string.IsNullOrWhiteSpace(query.Name))
+            {
+                players = players.Where(p => p.Name.Contains(query.Name));
+            }
+            
+            if(!string.IsNullOrWhiteSpace(query.Username))
+            {
+                players = players.Where(p => p.Username.Contains(query.Username));
+            }
+
+
+            //Sort
+            if(!string.IsNullOrWhiteSpace(query.SortBy))
+            {
+                if(query.SortBy.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                {
+                    players = query.IsDecsending ? players.OrderByDescending(p => p.Name) : players.OrderBy(p => p.Name);
+                }
+            }
+            
+            if(!string.IsNullOrWhiteSpace(query.SortBy))
+            {
+                if(query.SortBy.Equals("Username", StringComparison.OrdinalIgnoreCase))
+                {
+                    players = query.IsDecsending ? players.OrderByDescending(p => p.Username) : players.OrderBy(p => p.Username);
+                }
+            }
+
+            var skipNumber = (query.PageNumber - 1) * query.PageSize;
+            
+            //Skip First and grab others
+            return await players.Skip(skipNumber).Take(query.PageSize).ToListAsync();
         }
 
         public async Task<Player?> GetIdByAsync(int id)
