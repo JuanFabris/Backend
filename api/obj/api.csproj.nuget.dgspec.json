@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gianl\\Documents\\GitHub\\FinShark\\api\\api.csproj": {}
+    "C:\\Users\\gianl\\Documents\\GitHub\\GO4L\\api\\api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gianl\\Documents\\GitHub\\FinShark\\api\\api.csproj": {
+    "C:\\Users\\gianl\\Documents\\GitHub\\GO4L\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gianl\\Documents\\GitHub\\FinShark\\api\\api.csproj",
+        "projectUniqueName": "C:\\Users\\gianl\\Documents\\GitHub\\GO4L\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Users\\gianl\\Documents\\GitHub\\FinShark\\api\\api.csproj",
+        "projectPath": "C:\\Users\\gianl\\Documents\\GitHub\\GO4L\\api\\api.csproj",
         "packagesPath": "C:\\Users\\gianl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gianl\\Documents\\GitHub\\FinShark\\api\\obj\\",
+        "outputPath": "C:\\Users\\gianl\\Documents\\GitHub\\GO4L\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gianl\\AppData\\Roaming\\NuGet\\NuGet.Config"

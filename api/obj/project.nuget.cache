@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "l68doWJOBGA=",
+  "dgSpecHash": "Dxx8mwWBk7E=",
   "success": true,
-  "projectFilePath": "C:\\Users\\gianl\\Documents\\GitHub\\FinShark\\api\\api.csproj",
+  "projectFilePath": "C:\\Users\\gianl\\Documents\\GitHub\\GO4L\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gianl\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\gianl\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

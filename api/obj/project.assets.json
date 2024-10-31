@@ -4671,11 +4671,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\gianl\\Documents\\GitHub\\FinShark\\api\\api.csproj",
+      "projectUniqueName": "C:\\Users\\gianl\\Documents\\GitHub\\GO4L\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "c:\\Users\\gianl\\Documents\\GitHub\\FinShark\\api\\api.csproj",
+      "projectPath": "C:\\Users\\gianl\\Documents\\GitHub\\GO4L\\api\\api.csproj",
       "packagesPath": "C:\\Users\\gianl\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\gianl\\Documents\\GitHub\\FinShark\\api\\obj\\",
+      "outputPath": "C:\\Users\\gianl\\Documents\\GitHub\\GO4L\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\gianl\\AppData\\Roaming\\NuGet\\NuGet.Config"

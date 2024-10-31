@@ -1,4 +1,4 @@
-using api.Data;
+using api.Database;
 using api.Interfaces;
 using api.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -16,15 +16,15 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 
 
 //prevent object cycles
-builder.Services.AddDbContext<ApplicationDBContext>(options =>
+builder.Services.AddDbContext<AppDBContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 });
 
 //wire up our services
-builder.Services.AddScoped<IStockRepository, StockRepository>();
-builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<IPlayerRepo, PlayerRepo>();
+builder.Services.AddScoped<ISkillRepo, SkillRepo>();
 
 var app = builder.Build();
 
