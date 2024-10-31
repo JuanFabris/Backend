@@ -13,7 +13,6 @@ namespace api.Models
         public int Defense { get; set; }
         public int Strength { get; set; }
         public int Dribbling { get; set; }
-        
         public int? PlayerId { get; set; }
         public Player? Player { get; set; }
     }
